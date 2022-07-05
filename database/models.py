@@ -33,6 +33,7 @@ class Review(db.Model):
         model_data: dict = {
             "title": self.title,
             "review": self.review,
+            "id": str(self.id),
         }
         return model_data
 

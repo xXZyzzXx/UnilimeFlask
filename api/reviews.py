@@ -26,7 +26,7 @@ def product_reviews_endpoint(product_id: str):
 
 @reviews_blueprint.route("/<product_id>", methods=["PUT"])
 def add_review_to_product(product_id: str):
-    """Add a new review for Product"""
+    """Add a new review for a Product"""
     review_data: dict = request.json
     product = get_product_by_id(product_id=product_id)
     title = review_data.get("Title") or review_data.get("title")
