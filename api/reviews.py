@@ -14,7 +14,7 @@ def product_reviews_endpoint(product_id: str):
     page = request.args.get(get_page_parameter(), type=int, default=1)
     product = get_product_by_id(product_id=product_id)
     if not product:
-        err_msg = {"detail": "No Products in database"}
+        err_msg = {"detail": "No Product in database with this id"}
         return err_msg
     product_reviews: list = get_reviews_by_product(product=product, page=page)
     result_data: dict = {
@@ -26,6 +26,7 @@ def product_reviews_endpoint(product_id: str):
 
 @reviews_blueprint.route("/<product_id>", methods=["PUT"])
 def add_review_to_product(product_id: str):
+    """Add a new review for Product"""
     review_data: dict = request.json
     product = get_product_by_id(product_id=product_id)
     title = review_data.get("Title") or review_data.get("title")
