@@ -17,7 +17,6 @@ def parse_products_file():
     products_filename = "parsing_files/products.csv"
     file_generator_object: Generator = get_file_data(filename=products_filename)
     for rows_data in file_generator_object:
-        print(rows_data)
         title = rows_data.get("Title")
         asin = rows_data.get("Asin")  # noqa
         create_product(title=title, asin=asin)
@@ -32,4 +31,4 @@ def parse_reviews_file():
         title = rows_data.get("Title")
         asin = rows_data.get("Asin")  # noqa
         product = get_product_by_asin(asin=asin)  # We can add cache here
-        create_review(product=product, title=title, review=review, asin=asin)
+        create_review(product=product, title=title, review=review)

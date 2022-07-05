@@ -26,7 +26,6 @@ class Review(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     product = db.relationship("Product", back_populates="reviews")
     title = db.Column(db.String(255), nullable=False)
-    asin = db.Column(db.String(100), nullable=False)
     review = db.Column(db.Text, nullable=False)
 
     @property

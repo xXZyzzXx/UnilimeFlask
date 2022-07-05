@@ -3,14 +3,16 @@ from dotenv import load_dotenv
 
 from flask import Flask
 
-from database.db import db
 from api.reviews import reviews_blueprint
+from database.db import db
+from utils.cache import cache
 from utils.parsing import parse_reviews_file, parse_products_file
 
 load_dotenv()
 app = Flask(__name__)
 app.config.from_object(os.environ.get('APP_SETTINGS'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+cache.init_app(app)
 db.init_app(app)
 app.register_blueprint(reviews_blueprint)
 
